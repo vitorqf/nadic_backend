@@ -1,0 +1,13 @@
+*/.venv
+*/venv
+*/**/.vscode
+*/.idea
+*/.git
+*/.DS_Store
+*/**/*.pyc
+*/**/__pycache__
+*/.pytest_cache
+*/.mypy_cache
+*/.tox
+*/.eggs
+*/build
