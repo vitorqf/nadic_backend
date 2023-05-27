@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import CreateView, TemplateView
 
 from .forms import CarForm
@@ -48,6 +48,15 @@ def edit_car_by_id(request, car_id):
             form = CarForm(instance=car)
 
         return render(request, 'edit_car.html', {'form': form, 'car': car})
+    
+    except Car.DoesNotExist:
+        return HttpResponse("Car not found")
+    
+def delete_car_by_id(request, car_id):
+    try:
+        car = Car.objects.get(id=car_id)
+        car.delete()
+        return redirect('list_cars') 
     
     except Car.DoesNotExist:
         return HttpResponse("Car not found")
