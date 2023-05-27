@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.generic import CreateView, TemplateView
@@ -22,8 +23,12 @@ def create_car(request):
     if request.method == 'POST':
         form = CarForm(request.POST)
         if form.is_valid():
-            form.save()
-            return JsonResponse({"message": "Car created successfully", 'car': form.cleaned_data})
+            try:
+                form.save_car()
+                return JsonResponse({"message": "Success", 'car': form.cleaned_data})
+            
+            except IntegrityError:
+                return JsonResponse({"message": "Plate already exists"})
         
     else:
         form = CarForm()
