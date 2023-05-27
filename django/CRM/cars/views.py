@@ -6,6 +6,10 @@ from .forms import CarForm
 from .models import Car
 
 
+def list_cars(request):
+    cars = Car.objects.all()
+    return render(request, "list_cars.html", {"cars": cars})
+
 def get_car_by_id(request, car_id):
     try:
         car = Car.objects.get(id=car_id)
