@@ -1,7 +1,6 @@
 from django.db import IntegrityError
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView, TemplateView
 
 from .forms import CarForm
 from .models import Car
@@ -14,7 +13,7 @@ def list_cars(request):
 def get_car_by_id(request, car_id):
     try:
         car = Car.objects.get(id=car_id)
-        return render(request, "home.html", {"car": car})
+        return render(request, "car_by_id.html", {"car": car})
     
     except Car.DoesNotExist:
         return HttpResponse("Car not found")
