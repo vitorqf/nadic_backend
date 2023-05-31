@@ -34,6 +34,16 @@ class CarForm(forms.ModelForm):
         car.color = self.cleaned_data['color']
         car.chassis_type = self.cleaned_data['chassis_type']
         car.save()
+
+    def update_car(self, car):
+        plate = self.cleaned_data['plate'].replace('-', '')
+        car.plate = plate.upper()
+        car.model = self.cleaned_data['model']
+        car.brand = self.cleaned_data['brand']
+        car.year = self.cleaned_data['year']
+        car.color = self.cleaned_data['color']
+        car.chassis_type = self.cleaned_data['chassis_type']
+        car.save()
     
     class Meta:
         model = Car
