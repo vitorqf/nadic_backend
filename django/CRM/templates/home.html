@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Welcome to Renter {% endblock %}
+
+
+{% block content %}
+
+<div class="flex flex-col justify-center items-center gap-4 p-8">
+    <h1 class="text-4xl">Hello, welcome to Renter!</h1>
+    <h2 class="text-2xl">Please, select an option below:</h2>
+
+    <div class="flex flex-row justify-center items-center gap-4">
+        <div class="flex flex-col justify-center items-center gap-2">
+            <h3 class="text-2xl">Branches</h3>
+            <a href="{% url 'list_branches' %}" class="btn btn-primary">List Branches</a>
+        </div>
+        <div class="flex flex-col justify-center items-center gap-2">
+            <h3 class="text-2xl">Cars</h3>
+            <a href="{% url 'list_cars' %}" class="btn btn-primary">List Cars</a>
+        </div>
+        <div class="flex flex-col justify-center items-center gap-2">
+            <h3 class="text-2xl">Clients</h3>
+            <a href="{% url 'list_customers' %}" class="btn btn-primary">List Clients</a>
+        </div>
+        <div class="flex flex-col justify-center items-center gap-2">
+            <h3 class="text-2xl">Rentals</h3>
+            <a href="{% url 'list_rents' %}" class="btn btn-primary">List Rentals</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
