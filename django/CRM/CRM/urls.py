@@ -42,8 +42,8 @@ urlpatterns = [
     # API
     path("api/v1/", include("cars.api.urls")),
     path("api/v1/", include("customer.api.urls")),
-    # path("api/v1/", include("branches.api.urls")),
-    # path("api/v1/", include("rents.api.urls")),
+    path("api/v1/", include("branches.api.urls")),
+    path("api/v1/", include("rents.api.urls")),
     # Swagger
     path(
         "api/v1/swagger/",
