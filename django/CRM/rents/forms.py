@@ -26,13 +26,19 @@ class RentForm(forms.ModelForm):
     created_at = forms.DateTimeField(
         label="Created At",
         widget=forms.DateTimeInput(
-            attrs={"class": "input input-bordered w-full max-w-xs"}
+            attrs={
+                "class": "input input-bordered w-full max-w-xs",
+                "type": "datetime-local",
+            }
         ),
     )
     finishes_at = forms.DateTimeField(
         label="Finishes At",
         widget=forms.DateTimeInput(
-            attrs={"class": "input input-bordered w-full max-w-xs"}
+            attrs={
+                "class": "input input-bordered w-full max-w-xs",
+                "type": "datetime-local",
+            }
         ),
     )
     price = forms.DecimalField(

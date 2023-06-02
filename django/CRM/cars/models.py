@@ -17,12 +17,12 @@ class Car(models.Model):
     color = models.CharField(max_length=100, null=True)
     plate = models.CharField(max_length=8, null=True, unique=True)
     chassis_type = models.CharField(max_length=20, null=True)
-    status = models.CharField(
-        max_length=20, null=True, default=AVAILABLE, choices=STATUS_CHOICES
+    status = models.PositiveSmallIntegerField(
+        null=True, default=1, choices=STATUS_CHOICES
     )
 
     def __str__(self):
-        return self.model
+        return self.plate
 
     class Meta:
         verbose_name_plural = "Cars"

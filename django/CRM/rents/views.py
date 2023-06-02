@@ -18,14 +18,14 @@ def create_rent(request):
 
             return redirect("list_rents")
 
-        else:
-            form = RentForm()
+    else:
+        form = RentForm()
 
-        return render(request, "create.html")
+    return render(request, "create_rent.html", {"form": form})
 
 
 def delete_rent_by_id(request, rent_id):
-    rent = get_object_or_404(Rent, pk=rent_id)
+    rent = get_object_or_404(Rent, id=rent_id)
 
     car = get_object_or_404(Car, plate=rent.car_plate)
     car.status = 1
@@ -37,11 +37,11 @@ def delete_rent_by_id(request, rent_id):
 
 def list_rents(request):
     rents = Rent.objects.all()
-    return render(request, "list.html", {"rents": rents})
+    return render(request, "list_rents.html", {"rents": rents})
 
 
 def edit_rent_by_id(request, rent_id):
-    rent = get_object_or_404(Rent, pk=rent_id)
+    rent = get_object_or_404(Rent, id=rent_id)
 
     if request.method == "POST":
         form = RentForm(request.POST, instance=rent)
@@ -55,5 +55,5 @@ def edit_rent_by_id(request, rent_id):
 
 
 def get_rent_by_id(request, rent_id):
-    rent = get_object_or_404(Rent, pk=rent_id)
-    return render(request, "rent.html", {"rent": rent})
+    rent = get_object_or_404(Rent, id=rent_id)
+    return render(request, "rent_by_id.html", {"rent": rent})

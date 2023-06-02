@@ -16,6 +16,8 @@
             <p class="uppercase font-medium">Color: <span class="font-normal capitalize">{{ car.color }}</span></p>
             <p class="uppercase font-medium">Plate: <span class="font-normal capitalize">{{ car.plate }}</span></p>
             <p class="uppercase font-medium">Year: <span class="font-normal capitalize">{{ car.year }}</span></p>
+            <p class="uppercase font-medium">Status: <span class="font-normal capitalize">
+                    {{ car.get_status_display}}</span></p>
             <p class="uppercase font-medium">Chassis Type: <span class="font-normal capitalize">
                     {{ car.chassis_type}}</span></p>
         </div>

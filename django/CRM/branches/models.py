@@ -8,3 +8,6 @@ class Branch(models.Model):
     address_street = models.CharField(max_length=100, null=True)
     address_number = models.IntegerField(null=True)
     address_neighborhood = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return self.cnpj

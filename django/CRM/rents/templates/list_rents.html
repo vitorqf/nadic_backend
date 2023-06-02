@@ -1,39 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} List all cars {% endblock %}
+{% block title %} List all rents {% endblock %}
 
 
 {% block content %}
 
 <div class="flex flex-col gap-4 p-8">
-    <h1 class="text-2xl">Car List</h1>
+    <h1 class="text-2xl">Rent List</h1>
 
     <div class="overflow-x-auto">
         <table class="table table-zebra w-full shadow">
             <thead>
                 <tr>
-                    <th>Model</th>
-                    <th>Brand</th>
-                    <th>Year</th>
-                    <th>Color</th>
-                    <th>Plate</th>
-                    <th>Status</th>
+                    <th>Car Plate</th>
+                    <th>Branch CNPJ</th>
+                    <th>Customer RG</th>
+                    <th>Starting at</th>
+                    <th>Finishing at</th>
+                    <th>Price</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {% for car in cars %}
+                {% for rent in rents %}
                 <tr class="hover">
-                    <td class="capitalize">{{ car.model }}</td>
-                    <td class="capitalize">{{ car.brand }}</td>
-                    <td class="capitalize">{{ car.year }}</td>
-                    <td class="capitalize">{{ car.color }}</td>
-                    <td>{{ car.plate }}</td>
-                    <td>{{ car.status }}</td>
+                    <td class="capitalize">{{ rent.car_plate }}</td>
+                    <td class="capitalize">{{ rent.branch_cnpj }}</td>
+                    <td class="capitalize">{{ rent.customer_RG }}</td>
+                    <td class="capitalize">{{ rent.created_at }}</td>
+                    <td class="capitalize">{{ rent.finishes_at }}</td>
+                    <td class="capitalize">{{ rent.price }}</td>
                     <td>
                         <div>
                             <div class="tooltip" data-tip="Details">
-                                <a href="{%url 'get_car_by_id' car_id=car.id %}" class="btn btn-square btn-sm">
+                                <a href="{%url 'get_rent_by_id' rent_id=rent.id %}" class="btn btn-square btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#e0e0e0"
                                         viewBox="0 0 256 256">
                                         <path
@@ -43,7 +43,7 @@
                                 </a>
                             </div>
                             <div class="tooltip" data-tip="Remove">
-                                <a href="{%url 'delete_car_by_id' car_id=car.id %}"
+                                <a href="{%url 'delete_rent_by_id' rent_id=rent.id %}"
                                     class="btn btn-square btn-sm btn-error" title="Remove">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#e0e0e0"
                                         viewBox="0 0 256 256">
