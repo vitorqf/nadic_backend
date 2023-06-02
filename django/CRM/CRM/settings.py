@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "drf_yasg",
+    "rest_framework",
     # My apps
     "cars",
     "customer",
