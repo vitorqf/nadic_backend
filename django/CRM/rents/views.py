@@ -21,6 +21,8 @@ def create_rent(request):
     else:
         form = RentForm()
 
+    form.fields["car_plate"].queryset = Car.objects.filter(status=Car.AVAILABLE)
+
     return render(request, "create_rent.html", {"form": form})
 
 

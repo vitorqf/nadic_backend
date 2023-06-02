@@ -19,4 +19,12 @@ class Branch(models.Model):
         return self.car_set.filter(status=Car.UNAVAILABLE).count()
 
     def total_rent_prices(self):
-        return self.rent_set.aggregate(total=Sum("price"))["total"]
+        from cars.models import Car
+
+        rented_cars = self.car_set.filter(status=Car.UNAVAILABLE)
+        total = (
+            rented_cars.annotate(rent_price=Sum("rent__price"))
+            .values("rent_price")
+            .aggregate(total=Sum("rent_price"))["total"]
+        )
+        return total if total is not None else 0
