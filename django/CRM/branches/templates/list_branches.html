@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} List all customers {% endblock %}
+{% block title %} List all branches {% endblock %}
 
 
 {% block content %}
 
 <div class="flex flex-col gap-4 p-8">
-    <h1 class="text-2xl">Customer List</h1>
+    <h1 class="text-2xl">Branch List</h1>
 
     <div class="overflow-x-auto">
         <table class="table table-zebra w-full shadow">
             <thead>
                 <tr>
-                    <th>RG</th>
+                    <th>CNPJ</th>
                     <th>Name</th>
-                    <th>Surname</th>
                     <th>Street</th>
                     <th>Number</th>
                     <th>Neighborhood</th>
@@ -22,19 +21,17 @@
                 </tr>
             </thead>
             <tbody>
-                {% for customer in customers %}
+                {% for branch in branches %}
                 <tr class="hover">
-                    <td class="capitalize">{{ customer.RG }}</td>
-                    <td class="capitalize">{{ customer.name }}</td>
-                    <td class="capitalize">{{ customer.surname }}</td>
-                    <td class="capitalize">{{ customer.address_street }}</td>
-                    <td class="capitalize">{{ customer.address_number }}</td>
-                    <td class="capitalize">{{ customer.address_neighborhood }}</td>
+                    <td class="capitalize">{{ branch.cnpj }}</td>
+                    <td class="capitalize">{{ branch.name }}</td>
+                    <td class="capitalize">{{ branch.address_street }}</td>
+                    <td class="capitalize">{{ branch.address_number }}</td>
+                    <td class="capitalize">{{ branch.address_neighborhood }}</td>
                     <td>
                         <div>
                             <div class="tooltip" data-tip="Details">
-                                <a href="{%url 'get_customer_by_id' customer_id=customer.id %}"
-                                    class="btn btn-square btn-sm">
+                                <a href="{%url 'get_branch_by_id' branch_id=branch.id %}" class="btn btn-square btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#e0e0e0"
                                         viewBox="0 0 256 256">
                                         <path
@@ -44,7 +41,7 @@
                                 </a>
                             </div>
                             <div class="tooltip" data-tip="Remove">
-                                <a href="{%url 'delete_customer_by_id' customer_id=customer.id %}"
+                                <a href="{%url 'delete_branch_by_id' branch_id=branch.id %}"
                                     class="btn btn-square btn-sm btn-error" title="Remove">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#e0e0e0"
                                         viewBox="0 0 256 256">
