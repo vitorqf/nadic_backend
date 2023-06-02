@@ -17,6 +17,8 @@
                     <th>Street</th>
                     <th>Number</th>
                     <th>Neighborhood</th>
+                    <th>Rented Cars</th>
+                    <th>Total Rented Value</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -28,6 +30,9 @@
                     <td class="capitalize">{{ branch.address_street }}</td>
                     <td class="capitalize">{{ branch.address_number }}</td>
                     <td class="capitalize">{{ branch.address_neighborhood }}</td>
+                    <td class="capitalize">{{ branch.total_rented_cars }}</td>
+                    {% load humanize %}
+                    <td class="capitalize">{{ branch.total_rent_prices|floatformat:2|intcomma }}</td>
                     <td>
                         <div>
                             <div class="tooltip" data-tip="Details">

@@ -18,6 +18,7 @@
                     <th>Color</th>
                     <th>Plate</th>
                     <th>Status</th>
+                    <th>Branch CNPJ</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                     <td class="capitalize">{{ car.color }}</td>
                     <td class="capitalize">{{ car.plate }}</td>
                     <td class="capitalize">{{ car.get_status_display }}</td>
+                    <td class="capitalize">{{ car.branch.cnpj }}</td>
                     <td>
                         <div>
                             <div class="tooltip" data-tip="Details">

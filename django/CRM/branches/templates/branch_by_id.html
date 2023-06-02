@@ -36,6 +36,17 @@
                     {{ branch.address_neighborhood }}
                 </span>
             </p>
+            <p class="uppercase font-medium">Total rented cars:
+                <span class="font-normal capitalize">
+                    {{ branch.total_rented_cars }}
+                </span>
+            </p>
+            {% load humanize %}
+            <p class="uppercase font-medium">Total rent prices:
+                <span class="font-normal capitalize">
+                    {{ branch.total_rent_prices|floatformat:2|intcomma }}
+                </span>
+            </p>
         </div>
 
         <div>

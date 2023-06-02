@@ -1,5 +1,7 @@
 from django.db import models
 
+from branches.models import Branch
+
 
 # Create your models here.
 class Car(models.Model):
@@ -20,6 +22,7 @@ class Car(models.Model):
     status = models.PositiveSmallIntegerField(
         null=True, default=1, choices=STATUS_CHOICES
     )
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.plate
