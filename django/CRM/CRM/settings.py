@@ -141,7 +141,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-CSRF_TRUSTED_ORIGINS = ["http://gaming.vitorrafael.com.br/"]
+CSRF_TRUSTED_ORIGINS = ["http://gaming.vitorrafael.com.br"]
 
 AWS_ACCESS_KEY_ID = 'AKIA47EKA2FILAFNDNUW'
 AWS_SECRET_ACCESS_KEY = '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'
