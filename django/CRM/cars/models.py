@@ -13,6 +13,9 @@ class Car(models.Model):
         (UNAVAILABLE, "Unavailable"),
     )
 
+    def create_filename(self, filename):
+        return f"cars/{self.brand}-{self.model}-{self.year}-{self.plate}"
+
     model = models.CharField(max_length=100, null=True)
     brand = models.CharField(max_length=100, null=True)
     year = models.IntegerField(null=True)
@@ -23,7 +26,7 @@ class Car(models.Model):
         null=True, default=1, choices=STATUS_CHOICES
     )
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(upload_to="cars", null=True)
+    image = models.ImageField(upload_to=create_filename, null=True)
 
     def __str__(self):
         return self.plate

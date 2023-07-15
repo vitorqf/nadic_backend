@@ -16,12 +16,13 @@
     <h1 class="text-2xl">Insert a new car</h1>
 
 
-    <form method="POST" class="form-control max-w-xs w-full  flex flex-col gap-2">
+    <form method="POST" enctype="multipart/form-data" class="form-control max-w-xs w-full  flex flex-col gap-2">
         {% csrf_token %}
 
         {{ form.as_p }}
         <button class="btn">Create</button>
     </form>
+
 </div>
 
 {% endblock %}

@@ -43,6 +43,12 @@ class CarForm(forms.ModelForm):
         max_length=20,
         widget=forms.TextInput(attrs={"class": "input input-bordered w-full max-w-xs"}),
     )
+    image = forms.ImageField(
+        label="Image",
+        required=False,
+        widget=forms.FileInput(attrs={"class": "input input-bordered w-full max-w-xs"}),
+    )
+
 
     def clean_year(self):
         year = self.cleaned_data.get("year")
@@ -51,6 +57,7 @@ class CarForm(forms.ModelForm):
         return year
 
     def save_car(self):
+
         plate = self.cleaned_data["plate"].replace("-", "")
         car = Car(plate=plate.upper())
         car.model = self.cleaned_data["model"]
@@ -58,7 +65,17 @@ class CarForm(forms.ModelForm):
         car.year = self.cleaned_data["year"]
         car.color = self.cleaned_data["color"]
         car.chassis_type = self.cleaned_data["chassis_type"]
+        car.branch = self.cleaned_data["branch"]
+        # Acesse o arquivo enviado
+        image_file = self.cleaned_data["image"]
+        
+        if image_file:
+            # Atribua o arquivo ao campo 'image'
+            car.image.save(image_file.name, image_file)
+        
+        # # Salve o carro
         car.save()
+  
 
     def update_car(self, car):
         plate = self.cleaned_data["plate"].replace("-", "")
@@ -68,6 +85,8 @@ class CarForm(forms.ModelForm):
         car.year = self.cleaned_data["year"]
         car.color = self.cleaned_data["color"]
         car.chassis_type = self.cleaned_data["chassis_type"]
+        car.branch = self.cleaned_data["branch"]
+
         car.save()
 
     class Meta:
