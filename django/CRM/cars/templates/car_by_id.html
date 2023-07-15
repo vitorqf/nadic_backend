@@ -22,6 +22,11 @@
                     {{ car.chassis_type}}</span></p>
             <p class="uppercase font-medium">Branch CNPJ: <span class="font-normal capitalize">
                     {{ car.branch.cnpj }}</span></p>
+            <p class="uppercase font-medium">Image:
+                <img src="{{ car.image.url }}" alt="{{ car.model }}"
+                    class="w-full h-[200px] object-cover object-center rounded-lg">
+            </p>
+
         </div>
 
         <div>
