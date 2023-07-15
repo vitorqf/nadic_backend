@@ -23,6 +23,7 @@ class Car(models.Model):
         null=True, default=1, choices=STATUS_CHOICES
     )
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to="cars", null=True)
 
     def __str__(self):
         return self.plate
