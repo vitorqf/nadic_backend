@@ -140,3 +140,15 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ],
 }
+
+CSRF_TRUSTED_ORIGINS = ["http://gaming.vitorrafael.com.br/"]
+
+AWS_ACCESS_KEY_ID = 'AKIA47EKA2FILAFNDNUW'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'aws-network-2'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
