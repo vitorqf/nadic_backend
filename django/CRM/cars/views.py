@@ -1,3 +1,4 @@
+import uuid
 import boto3
 from django.db import IntegrityError
 from django.http import HttpResponse
@@ -31,7 +32,7 @@ def create_car(request):
                 form.save_car()
 
                 message_body = f"Car {form.cleaned_data['plate']} created"
-                send_sqs_message(message_body)
+                send_sqs_message(message_body, form.cleaned_data["plate"])
 
                 return redirect("list_cars")
 
@@ -50,25 +51,40 @@ def create_car(request):
 
 def retrieve_sqs_messages():
     response = sqs.receive_message(
-        QueueUrl=SQS_QUEUE_URL, MaxNumberOfMessages=10
+        QueueUrl=SQS_QUEUE_URL,
+        MaxNumberOfMessages=10,
+        AttributeNames=['MessageGroupId', 'MessageDeduplicationId'],
+        MessageAttributeNames=['All']
     )
+
 
     messages = []
     if "Messages" in response:
         for message in response["Messages"]:
+            print(message["Attributes"])
             message_body = message["Body"]
+            message_group_id = message["Attributes"]["MessageGroupId"]
+            message_deduplication_id = message["Attributes"]["MessageDeduplicationId"]
             messages.append(message_body)
             delete_sqs_message(message["ReceiptHandle"])
 
     return messages
 
 
-def send_sqs_message(message_body):
-    sqs.send_message(QueueUrl=SQS_QUEUE_URL, MessageBody=message_body)
+def send_sqs_message(message_body, message_group_id):
+    sqs.send_message(
+        QueueUrl=SQS_QUEUE_URL,
+        MessageBody=message_body,
+        MessageGroupId=message_group_id,
+        MessageDeduplicationId=str(uuid.uuid4()),
+    )
 
 
 def delete_sqs_message(receipt_handle):
-    sqs.delete_message(QueueUrl=SQS_QUEUE_URL, ReceiptHandle=receipt_handle)
+    sqs.delete_message(
+        QueueUrl=SQS_QUEUE_URL,
+        ReceiptHandle=receipt_handle,
+    )
 
 
 def get_car_by_id(request, car_id):
