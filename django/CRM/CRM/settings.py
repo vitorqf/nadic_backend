@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-import boto3
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -145,8 +145,10 @@ REST_FRAMEWORK = {
 
 CSRF_TRUSTED_ORIGINS = ["http://gaming.vitorrafael.com.br"]
 
-AWS_ACCESS_KEY_ID = 'AKIA47EKA2FILAFNDNUW'
-AWS_SECRET_ACCESS_KEY = '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'
+load_dotenv()
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'aws-network-2'
 AWS_S3_SIGNATURE_NAME = 's3v4',
 AWS_S3_REGION_NAME = 'us-east-2'
