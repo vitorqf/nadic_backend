@@ -64,7 +64,7 @@ def retrieve_sqs_messages():
             message_group_id = message["Attributes"]["MessageGroupId"]
             message_deduplication_id = message["Attributes"]["MessageDeduplicationId"]
             messages.append(message_body)
-            # delete_sqs_message(message["ReceiptHandle"])
+            delete_sqs_message(message["ReceiptHandle"])
 
     return messages
 
