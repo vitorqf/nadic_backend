@@ -61,7 +61,7 @@ def retrieve_sqs_messages():
     messages = []
     if "Messages" in response:
         for message in response["Messages"]:
-            print(message["Attributes"])
+            (message["Attributes"])
             message_body = message["Body"]
             message_group_id = message["Attributes"]["MessageGroupId"]
             message_deduplication_id = message["Attributes"]["MessageDeduplicationId"]

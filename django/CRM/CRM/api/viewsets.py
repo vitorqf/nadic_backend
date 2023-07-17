@@ -55,7 +55,7 @@ class UserViewSet(ViewSet):
     def perform_create(self, serializer):
         is_staff = self.request.data.get("is_staff", False)
         user = serializer.save(is_staff=is_staff)
-        print(user)
+        (user)
         user.is_staff = is_staff
         user.save()
 
