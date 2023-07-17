@@ -23,7 +23,6 @@ def list_cars(request):
     messages = retrieve_sqs_messages()
     return render(request, "list_cars.html", {"cars": cars, "messages": messages})
 
-
 def create_car(request):
     if request.method == "POST":
         form = CarForm(request.POST, request.FILES)
